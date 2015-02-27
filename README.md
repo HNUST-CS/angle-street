@@ -1,7 +1,7 @@
 爱上天使街外卖平台
 =======
 这是模仿[美团外卖](http://i.waimai.meituan.com/home/wx4g0f69nfe7)的一个微信外卖平台。
-开发者 [wangkechun](https://github.com/wangkechun) [JailBreakC](https://github.com/JailBreakC)
+开发者 [wangkechun](https://github.com/wangkechun)(除前端之外的工作) [JailBreakC](https://github.com/JailBreakC)（前端）
 
 由于源代码含有较多敏感信息，所有在github只push了部分代码，并且没有保留版本历史记录。
 
@@ -10,9 +10,12 @@
 然后产品惨遭遗弃，两个开发者已经跑去刷外卖单去了⊙﹏⊙‖∣(首单每单补贴4-16元，利用验证码接码平台、亲心小号、手机密号等方式可以无限首单)
 
 ##业务流程&功能简介
-首先用户关注微信公众号，通过微信自定义菜单的按钮进入外卖平台下单，
+首先用户关注微信公众号，通过微信自定义菜单的按钮进入外卖平台下单。
+
 然后商家会收到短信提醒or微信通知or打印好的订单，商家确认订单之后，用户会接到微信提醒:订单已经确认。
-配送人员也会得到提醒。最后商家通知配送人员送货。配送成功之后用户可以在微信内直接回复评价.
+配送人员也会得到提醒。
+
+最后商家通知配送人员送货。配送成功之后用户可以在微信内直接回复评价。
 
 ##技术提要:
 - 系统后端采用Python的Flask框架,数据库采用MongoDB,使用MongoEngine作为ORM引擎
