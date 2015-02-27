@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cn" ng-app='admin'>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Admin</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="/static/css/ngToast.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="/static/css/admin.css?__inline=true" type="text/css" charset="utf-8" />
+  <script src="/static/js/lib/underscore.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/static/js/lib/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/static/js/lib/angular.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/static/js/lib/ngToast.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/static/js/lib/angular-animate.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/static/js/lib/angular-route.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/static/js/lib/angular-sanitize.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/static/js/lib/angular-cookies.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/static/js/lib/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/static/js/lib/moment.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/static/js/main.js?__inline=true" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body ng-controller="adminNavCtrl">
+  <nav style="border-radius:0;" class="navbar navbar-inverse" role="navigation" >
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/admin">爱上天使街</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav" ng-if="login.isLogin">
+          <li><a href="/admin/listorder">订单管理</a> </li>
+          <li><a href="/admin/listshop">店铺管理</a> </li>
+          <li><a href="/admin/listuser">用户管理</a> </li>
+          <li><a href="/admin/other">其它管理</a> </li>
+          <li><a href="/admin/log">日志管理</a> </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
+
+  <ng-view></ng-view>
+  <ng-toast></ng-toast>
+</body>
+
+</html>
+

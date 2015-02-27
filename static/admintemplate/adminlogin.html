@@ -1,0 +1,20 @@
+<div ng-controller="loginCtrl">
+  <div class="container">
+    <div class="row">
+      <div style="text-align:center" class="col-sm-4 col-sm-offset-4">
+        <form class="form">
+          <br>
+          <br>
+          <input class="form-control" type="text" placeholder="管理员账号" ng-model="username"></input>
+          <br>
+          <input class="form-control" type="password" placeholder="管理员密码" ng-model="passwd"></input>
+          <br>
+          <button type="submit" class="btn btn-primary" style="width: 100%;" ng-click="login()">
+            login
+          </button>
+          <br>
+        </form>
+      </div>
+      <br>
+    </div>
+  </div>

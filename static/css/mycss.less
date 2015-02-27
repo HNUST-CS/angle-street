@@ -1,0 +1,698 @@
+@fnord: "I am fnord.";
+@var: 'fnord';
+@base-color-deep: #DE4331;
+@base-color-light: lighten(@base-color-deep,10%);
+@base-color-deep2: #C74836;
+@base-color-light2: #E5892C;
+@gray-font: #888888;
+/*#EB7783*/
+@light-gray: #EEEEEE;
+@gray: #E1E1E1;
+.auto-font-color (@background-color)when(
+	lightness(@background-color) < 50%){
+	color: white;
+}
+.auto-font-color (@background-color)when(
+	lightness(@background-color) >= 50%){
+	color: black;
+}
+.blue-btn{
+	background-color: #5A99CF;
+	border-color: #4C73AE;
+}
+.green-btn{
+	background-color: #8EC31D;	
+	border-color: #398439;
+}
+.orange-btn{
+	background-color: #FD9500;
+	border-color: #FD7900;
+}
+.blue-btn:hover{
+	background-color:#4C73AE;
+}
+.green-btn:hover{
+	background-color: #398439;
+}
+.orange-btn:hover{
+	background-color:#FD7900;
+}
+a{
+	color:black;
+}
+.container{
+	width: 100%;
+}
+.text-center{
+	text-align: center;
+}
+body{
+	font-family: '微软雅黑';
+	margin-top: 40px;
+	background-color: @light-gray;
+	z-index: -1;
+}
+.head{
+	background-color: @base-color-deep;
+	width: 100%;
+	height: 80px;
+	position: fixed;
+	top:0;
+	color:white;
+	z-index: 1;
+}
+.head p{
+	margin: 0;
+}
+.head-love{
+	width: 16px;
+	margin-top: -7px;
+}
+.head>div {
+	position: absolute;
+	height: 100%;
+	background-color: @base-color-light;
+	padding-top: 20px;
+	text-align: center;
+}
+.head h3 {
+	font-size: 20px;
+	margin: 30px 20px;
+	text-align: center;
+}
+.head .shoptype {
+	left: 50px;
+	top: 0px;
+	width: 70px;
+}
+.head .shoprank {
+	left: 46%;
+	top: 0px;
+	width: 100px;
+}
+.head .collect {
+	right: 0px;
+	top: 0px;
+	width: 45px;
+}
+.head .head-arrow {
+	vertical-align: middle;
+	height: 28px;
+	-webkit-transform: rotate(90deg);
+	margin-top: -7px;
+}
+.head .backarr {
+	left: 0px;
+	top: 0px;
+	width: 50px;
+	background-color : @base-color-deep;
+}
+
+.head  a{
+	padding: 30px 18px;
+}
+
+.head .back-arrow{
+	vertical-align: middle;
+	height: 37px;
+	-webkit-transform: rotate(180deg);
+	margin-top: 2px;
+}
+.set-order{
+	top: 40px;
+	width: 100%;
+	margin: 0px;
+	z-index: 0;
+	background-color: @base-color-deep;
+}
+.inline{
+	display: inline-block;
+}
+.title{
+	color: white;
+	margin: 11px 0 0 30px;
+}
+.logo {
+	width: 130px;
+	margin: 28px 15px;
+}
+.back-btn{
+	font-size: 26px;
+	color: #FFF;
+	vertical-align: sub;
+}
+
+.set-order button{
+	padding: 2px 3px;
+	width: 90%;
+	margin: 5px 5% 10px 5%!important;
+	border-radius: 13px;
+	background: @base-color-light;
+	color: white;
+}
+.btn-group{
+	padding: 0px;
+}
+.shop-img{
+	height: 70px;
+	width: 70px;
+	vertical-align: top;
+	margin: 5px 10px;
+	border-radius: 35px;
+	overflow: hidden;
+}
+.stars{
+	height: 29px;
+	vertical-align: top;
+	margin-top: -5px;
+}
+.stuff-container {
+	margin-bottom: 50px;
+	position: absolute;
+	width: 100%;
+	background-color: white;
+}
+.stuff-container-fa{
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 80px;
+	z-index: 0;
+}
+.stuff-i{
+	border-bottom: solid 1px @gray;
+	height: 80px;
+}
+.stuff-i:hover{
+	/*background-color: @light-gray;*/
+}
+.stuff h4 {
+	font-family: 华文细黑;
+	font-weight: bold;
+	color: black;
+	font-size: 14px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	max-width: 100%;
+	margin: 4px 0;
+	padding-top: 10px;
+}
+.stuff-i p {
+	font-size: 10px;
+	margin: 0;
+}
+.stuff-i .salesVolume{
+	background-color: @light-gray;
+	color: @gray-font;
+	height: 100%;
+	vertical-align: bottom;
+	padding-top: 20px;
+	width: 19%;
+	text-align: center;
+	float: right;
+}
+.stuff-i .arrow{
+	height: 100%;
+	width: 11%;
+	vertical-align: bottom;
+	text-align: center;
+	float: right;
+}
+.stuff-i .arrow img {
+	height: 39px;
+	margin-top: 20px;
+}
+.stuff{
+	width: 39%;
+}
+.foot-bar{
+	position: fixed;
+	bottom: 0px;
+	height: 40px;
+	width: 100%;
+	color: white;
+	background: rgba(97, 97, 97, 0.93);
+	padding: 6px;
+	z-index: 0;
+}
+.foot-bar p{
+	margin: 4px 5px;
+}
+.service{
+	position: fixed;
+	height: 80px;
+	width: 100%;
+	top: 40px;
+	padding-top:3px;
+	text-align: center;
+	border-bottom: solid 1px @gray;
+	background: white;
+	z-index: 0;
+}
+.s-btn{
+	color: white;
+	margin: 10px 0px 5px 0px;
+	border-radius: 10px;
+	padding: 0px 6px;
+}
+.s-btn:hover{
+	color: white;
+}
+.big-digit{
+	font-size: 22px;
+}
+.service .col-xs-4{
+	border-left: solid 1px @gray;
+}
+.price{
+	color: #FF9E00!important;
+	font-weight: bold;
+}
+.order{
+	position: fixed;
+	top: 215px;
+	height: 55%;
+}
+.left-bar{
+	text-align: center;
+	font-size: 14px;
+	background: @light-gray;
+	border-right: solid 1px @gray;
+	padding: 0 0 50px 0;
+	position: absolute;
+	height: 100%;
+	display: block;
+	top: 0;
+	overflow: hidden;
+}
+#typeList_scroller{
+	position: absolute;
+	width: 100%
+}
+.order-type{
+	border-bottom: solid 1px @gray;
+	margin: 0px;
+	padding: 14px;
+	position: relative;
+	cursor: pointer;
+	white-space: nowrap;
+	max-width: 100%;
+}
+
+.order-type a {
+	color: black;
+}
+a:hover{
+	text-decoration: none;
+}
+
+.order-type:hover{
+	background-color: white;
+	border: none;
+	border-left: solid 5px @base-color-deep;
+}
+.order-type.active{
+	background-color: white;
+	border: none;
+	border-left: solid 5px @base-color-deep;
+}
+
+.type-title{
+	background: @base-color-light;
+	color: white;
+	padding: 5px;
+	position: fixed;
+	width: 75%;
+	top: 120px;
+	margin-left: 25%;
+	z-index: 0;
+}
+.right-bar{
+	padding: 0;
+	width: 100%;
+	background: white;
+}
+#right-bar{
+	overflow: hidden;
+	position: absolute;
+	height: 100%;
+	right: 0;
+	top: 0px;
+	width: 75%;
+	background: white;
+}
+.order-detail{
+	border-bottom: solid 1px @gray;
+	padding: 4px 10px 11px 3px;
+	position: relative;
+	cursor: pointer;
+}
+.order-detail:hover{
+	background-color: @light-gray;
+}
+.sp-btn {
+	position: absolute;
+	font-size: 25px;
+	color: @base-color-deep;
+	/* background: @base-color-deep; */
+	height: 36px;
+	width: 36px;
+	padding: 6px 6px;
+	cursor: pointer;
+}
+.sp-btn:hover {
+	color: #9B2900;
+}
+.sp-1{
+	top: 15px;
+	right: 4px;
+}
+.sp-2 {
+	top: 15px;
+	right: 63px;
+}
+.sp-3{
+	right: 25px;
+	bottom: 73px;
+}
+.sp-4{
+	right: 90px;
+	bottom: 73px;
+}
+.o-cnt{
+	position: absolute;
+	font-size: 12px;
+	color: white;
+	vertical-align: top;
+	background: @base-color-light;
+	height: 17px;
+	padding: 0px 10px;
+	border-radius: 14px;
+	text-align: center;
+	width: 26px;
+	line-height: 16px;
+	padding: 1px;
+}
+.o-1{
+	top: 25px;
+	right: 38px;
+}
+.o-2{
+	right: 60px;
+	bottom: 78px;
+}
+.item-msg-ct {
+	background: white;
+	padding: 0px;
+	margin-top: 10px;
+	border-radius: 2px;
+	position: relative;
+}
+.item-msg-ct h5{
+	margin: 0 0 5px 0;
+}
+.item-msg-ct p{
+	margin: 0;
+}
+.item-cnt{
+	margin-top: 8px;
+	width: 138px;
+	margin-right: -9px;
+	position: relative;
+}
+
+.item-cnt-price {
+	position: absolute;
+	right: 9px;
+	top: 3px;
+}
+.item-msg {
+	padding: 7px;
+}
+a.black *{
+	color: black
+}
+.item-msg input{
+	border: none;
+	border-bottom: solid 1px gray;
+}
+.go_confirm{
+	background-color: @base-color-deep;
+	width: 100%;
+}
+#item_pic_m .modal-dialog{
+	max-width: 100%;
+	width: 352px;
+	margin: auto;
+	margin-top: 80px;
+	padding: 0 5px;
+}
+#item_pic_m .modal-header {
+	text-align: center;
+	padding: 5px;
+}
+.modal-content{
+	border-radius: 0;
+}
+.hasPic{
+	color: @base-color-light;
+}
+.b-all{
+	font-weight: normal;
+	margin-left: 2px;
+	background-color: @base-color-light;
+}
+.telphone {
+	color: @base-color-deep;
+	font-size: 35px;
+	margin-top: 15px;
+}
+.discus-ico {
+color: @base-color-deep;
+margin: 2px;
+}
+.d-shop-img {
+	height: 49px;
+	vertical-align: top;
+	margin: 10px;
+}
+.d-stars {
+	height: 28px;
+	vertical-align: top;
+	margin-top: -5px;
+}
+.typelist{
+	text-align: center;
+}
+.typelist img {
+	width: 45px;
+}
+.alt{
+	background-color: @light-gray;
+}
+.typelist .row{
+	padding: 15px 0px;
+}
+.search{
+	right: 0px;
+	top: 0px;
+	width: 80px;
+}
+.search img {
+	width: 32px;
+	margin: 5px;
+}
+.typelist p {
+	font-size: 10px;
+	margin: 0;
+	color: @gray-font;
+}
+.help {
+	text-align: center;
+	padding-top: 15px;
+	padding-bottom: 80px;
+	color: white;
+	background: rgb(234, 166, 87);
+}
+.help p {
+	font-size: 15px;
+	margin: 10px;
+}
+input.ng-invalid {
+	border: 1px solid red;
+}
+.imgClickArea{
+	position: absolute;
+	width: 60%;
+	height: 100%;
+	left: 0;
+	top: 0;
+}
+.item img{
+	margin:auto;
+}
+.shop-detail-ct {
+	position: absolute;
+	top: 80px;
+	width: 100%;
+}
+.shop-detail {
+	position: absolute;
+	padding-top: 2px;
+	width: 33%;
+	left: 0px;
+	top: 0px;
+	text-align: center;
+	background: white;
+}
+.shop-detail p {
+	padding: 2px 0px 0px 0px;
+	color: #888888;
+	margin: 0;
+}
+.discuss {
+	position: absolute;
+	text-align: center;
+	width: 67%;
+	right: 0px;
+	top: 0px;
+}
+.discuss p{
+	color: red;
+}
+.discuss img {
+	width: 100%;
+}
+.orange {
+background: #F6911D;
+}
+.v-line {
+	vertical-align: top;
+	border-left: solid 1px white;
+	display: inline-block;
+	margin-top: 20px;
+	background: inherit!important;
+	height: 40px!important;
+	color: white;
+	padding-left: 5px;
+	padding-top: 22px!important;
+}
+.goods-pic {
+	width: 80px;
+	float: left;
+	height: 70px;
+	border-radius: 10px;
+}
+.order-detail-left {
+	margin-left: 90px;
+	padding-top: 13px;
+}
+.carousel-inner>.item>a>img {
+	width: 100%;
+}
+/* Include this file in your html if you are using the CSP mode. */
+
+@charset "UTF-8";
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak],
+.ng-cloak, .x-ng-cloak,
+.ng-hide {
+  display: none !important;
+}
+
+ng\:form {
+  display: block;
+}
+/**********/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*******************************************/
+
+/*view-animate*/
+.view-animate-container {
+	/*position:relative;*/
+	/*height:100px!important;*/
+	/*position:relative;*/
+	/*background:white;*/
+	/*border:1px solid black;*/
+	/*height:40px;*/
+	overflow: hidden;
+}
+
+.view-animate {
+	/*padding:10px;*/
+	position: absolute;
+	width: 100%;
+	background-color: @light-gray;
+}
+
+.view-animate.ng-enter,.view-animate.ng-leave{
+	-webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+	transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+	display: block;
+	/*width:100%;*/
+	/*border-left:1px solid black;*/
+
+	position: absolute;
+	/*top:0;
+	 left:0;
+	 right:0;
+	 bottom:0;
+	 padding:10px;*/
+}
+
+.view-animate.ng-enter {
+	left: 100%;
+}
+
+.view-animate.ng-enter.ng-enter-active {
+	left: 0;
+	
+}
+
+.view-animate.ng-leave.ng-leave-active {
+	/*left: -200%;*/
+	display: block;
+}
+
+
+
+
+
+.form-control.ng-invalid {
+	border-color: red;
+      /*color:white;*/
+      /*background: red;*/
+}

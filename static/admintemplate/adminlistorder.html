@@ -1,0 +1,119 @@
+
+<div ng-controller="listOrderCtrl" class="container">
+
+
+	<div class="col-sm-8">
+		<div class="btn-group">
+			<button type="button" class="btn btn-default tips" data-toggle="tooltip" data-placement="top" title="所有订单" ng-click="chooseState('all')">all</button>
+			<button type="button" class="btn btn-default tips" data-toggle="tooltip" data-placement="top" title="由于用户没有关注，导致通知信息发送不成功的订单" ng-click="chooseState('waiting')">waiting</button>
+			<button type="button" class="btn btn-default tips" data-toggle="tooltip" data-placement="top" title="等待商户确认中的订单" ng-click="chooseState('pending')">pending</button>
+			<button type="button" class="btn btn-default tips" data-toggle="tooltip" data-placement="top" title="商户成功确认，正在准备商品的订单" ng-click="chooseState('prepare')">prepare</button>
+			<button type="button" class="btn btn-default tips" data-toggle="tooltip" data-placement="top" title="准备选择配送人员 ，等待打印的订单" ng-click="chooseState('prepring')">prepring</button>
+			<button type="button" class="btn btn-default tips" data-toggle="tooltip" data-placement="top" title="配送中的订单" ng-click="chooseState('delivery')">delivery</button>
+			<button type="button" class="btn btn-default tips" data-toggle="tooltip" data-placement="top" title="配送成功的订单" ng-click="chooseState('success')">success</button>
+			<button type="button" class="btn btn-default tips" data-toggle="tooltip" data-placement="top" title="失败和被取消的订单" ng-click="chooseState('fail')">fail</button>
+		</div>
+		<br>
+
+		<table class="table table-bordered table-striped table-hover">
+			<tr>
+				<th>微信号</th>
+				<th>姓名</th>
+				<th>留言</th>
+				<th>总价格</th>
+				<th>电话</th>
+				<th>送餐地址</th>
+				<th>状态</th>
+				<th>下单时间</th>
+			</tr>
+
+			<tr style="cursor:pointer;" ng-repeat="item in orderlist"  ng-click="choose(item)">
+				<td>{{item.weixinname}}</td>
+				<td>{{item.name}}</td> 
+				<td>{{item.msg}}</td> 
+				<td>{{item.allprice}}</td> 
+				<td>{{item.tel}}</td> 
+				<td>{{item.addr}}</td>
+				<td>{{item.state}}</td> 
+				<td>{{(item.time.$date-8*3600*1000)| date:'HH:mm:ss'}}</td> 
+			</tr>
+		</table>
+		<ul class="pagination">
+			<li ng-click="lastpage()"><a>&laquo;</a></li>
+			<li><a>第{{page+1}}页</a></li>
+			<li ng-click="nextpage()"><a>&raquo;</a></li>
+		</ul>
+	</div>
+	<div class="col-sm-4">
+		<div class="form-group"><h4>订单信息</h4></div> 
+		<div class="">微信账号:{{orderNow.weixinname}}</div>
+		<div class="">姓名:{{orderNow.name}}</div> 
+		<div class="">留言:{{orderNow.msg}}</div> 
+		<div class="">总价:{{orderNow.allprice}}</div> 
+		<div class="">总数量:{{orderNow.allcount}}</div> 
+		<div class="">电话:{{orderNow.tel}}</div> 
+		<div class="">地址{{orderNow.addr}}</div>
+		<div class="">状态:{{orderNow.state}}</div> 
+		<div class="">下单时间:{{(orderNow.time.$date-8*3600*1000)| date:'yyyy-MM-dd HH:mm:ss'}}</div> 
+		<hr/>
+		<div class="dropdown">
+			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+				修改状态
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+				<li role="presentation" ng-click="orderModifyState('waiting')"><a>waiting</a></li>
+				<li role="presentation" ng-click="orderModifyState('pending')"><a>pending</a></li>
+				<li role="presentation" ng-click="orderModifyState('prepare')"><a>prepare</a></li>
+				<li role="presentation" ng-click="orderModifyState('prepring')"><a>prepring</a></li>
+				<li role="presentation" ng-click="orderModifyState('delivery')"><a>delivery</a></li>
+				<li role="presentation" ng-click="orderModifyState('success')"><a>success</a></li>
+				<li role="presentation" ng-click="orderModifyState('fail')"><a>fail</a></li>
+				<li role="presentation" ng-click="reload(true)"><a>fail</a></li>
+			</ul>
+		</div>
+		<button ng-click="sendCmd('print')" ng-disabled="" class="btn btn-primary">打印订单</button>
+		<button ng-click="sendCmd('noticeuser')" ng-disabled="" class="btn btn-primary">重新通知用户</button>
+		<button ng-click="sendCmd('noticeshop')" ng-disabled="" class="btn btn-primary">重新通知店铺</button>
+		<button ng-click="sendCmd('smsnoticeshop')" ng-disabled="" class="btn btn-primary">短信通知店铺</button>
+		<button ng-click="sendCmd('cancel')" ng-disabled="" class="btn btn-primary">取消订单</button>
+		<div class="form-group" ng-click="goodsShow = !goodsShow" ng-init = "goodsShow=true"><h4>订单</h4></div> 
+		<table class="table table-bordered table-hover table-condensed" ng-show="goodsShow">
+			<tr>
+				<th>id:</th>
+				<th>菜品名:</th>
+				<th>类型:</th>
+				<th>数量:</th>
+				<th>价格:</th>
+				<th>积分:</th>
+			</tr>
+			<tr ng-repeat="item in orderNow.goods">
+				<td>{{item.id}}</td>
+				<td>{{item.name}}</td>
+				<td>{{item.category}}</td>
+				<td>{{item.count}}</td>
+				<td>{{item.price}}</td>
+				<td>{{item.point}}</td>
+			</tr>
+		</table>
+		<hr/>
+		
+		<div class="form-group" ng-click="showinfoShow = !showinfoShow" ng-init = "showinfoShow=true"><h4>店铺信息</h4></div> 
+		<div class="form-group" ng-show="showinfoShow">
+			店铺名称:{{orderNow.info.name}} <br/>
+			店铺电话:{{orderNow.info.tel}} <br/>
+			送货区域:{{orderNow.info.area}} <br/>
+			店铺状态:{{orderNow.info.state}}  <br/>
+			店铺通知:{{orderNow.info.msg}}  <br/>
+			店铺地址:{{orderNow.info.addr}}  <br/>
+			店铺描述:{{orderNow.info.desc}}  <br/>
+		</div>
+		<div class="form-group"><h4>处理信息</h4></div> 
+
+		<div class="form-group">
+			<p ng-repeat="log in orderNow.detail">{{log}}</p>
+		</div>
+	</div>
+
+	
+</div>

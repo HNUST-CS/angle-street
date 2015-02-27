@@ -1,0 +1,103 @@
+<div ng-controller="shopListCtrl">
+  <div class="head">
+
+    <div class="backarr">
+      <a href="/#/menu">
+        <img class="back-arrow" src="/static/images/arrow.png">
+      </a>
+    </div>
+
+    <div class="shoptype">
+      <div class="order-btn dropdown-toggle" data-toggle="dropdown">
+        <p>全部</p><p>商家</p>
+        <img class="head-arrow" src="/static/images/arrow.png">
+      </div>
+      <ul class="dropdown-menu" role="menu">
+        <!-- todo -->
+        <li><a>全部商家</a>
+        </li>
+        <li class="divider"></li>
+        <li><a>有优惠</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="shoprank">
+      <div class="order-btn dropdown-toggle" data-toggle="dropdown">
+        <p>默认</p><p>排序</p>
+        <img class="head-arrow" src="/static/images/arrow.png">
+      </div>
+      <ul class="dropdown-menu" role="menu">
+        <li><a ng-click="order=''">默认排序</a>
+        </li>
+        <li class="divider"></li>
+        <li><a ng-click="order='-star'">评价从高到低</a>
+        </li>
+        <li class="divider"></li>
+        <li><a ng-click="order='startPrice'">起送价从低到高</a>
+        </li>
+        <li class="divider"></li>
+        <li><a ng-click="order='-salesVolume'">销量从高到低</a>
+        </li>
+        <li class="divider"></li>
+        <li><a ng-click="order='deliveryTime'">配送速度从快到慢</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="collect">
+      <p>我的</p><p>收藏</p>
+      <img class="head-love" src="/static/images/xin.png">
+    </div>
+
+  </div>
+
+  <div id="stuff-container1" class="stuff-container-fa">
+    <div class="stuff-container">
+        <a ng-repeat="shop in shopList | orderBy:order" ng-href="/#/shop/{{shop._id.$oid}}" class="black">
+      <div class="stuff-i" >
+          <img class="inline shop-img" ng-src="{{shop.info.shopImg|qiniuimg}}">
+          <div class="inline stuff">
+            <h4>{{shop.info.name}}</h4>
+            <div>
+              
+              <p class="inline">{{shop.info.startPrice}}元起送 </p>
+            </div>
+            <p>
+              {{shop.info.deliveryTime}}分钟送达
+            </p>
+          </div>
+          <div class="inline arrow ">
+            <img src="/static/images/arrow-g.png">
+          </div>
+          <div class="inline salesVolume">
+            月售<br>
+            {{shop.data.salesVolume}}
+          </div>
+          
+      </div>
+        </a>
+      <div style="margin-bottom:134px;"></div>
+    </div>
+  </div>
+
+ 
+    <script>
+    var stuffcontainer1
+    setTimeout(function(){
+      stuffcontainer1 = new iScroll("stuff-container1",{"vScrollbar":false});
+    }, 1000);
+    setTimeout(function(){
+      stuffcontainer1.refresh();
+    }, 3000);
+    setTimeout(function(){
+      stuffcontainer1.refresh();
+    }, 10000);
+
+  </script> 
+</div>
+
+
+ <div class="foot-bar">
+    <p class="pull-left">湖南省湘潭市</p>
+  </div>

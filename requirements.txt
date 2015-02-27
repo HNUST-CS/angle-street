@@ -1,0 +1,7 @@
+Flask
+requests
+ipdb
+pymongo
+mongoengine
+ipython
+Redis

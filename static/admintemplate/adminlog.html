@@ -1,0 +1,9 @@
+<div ng-controller="adminlogCtrl" class="container">
+    <!-- {{log|json}} -->
+    <div ng-repeat="item in log">
+        <pre style="background-color: #E3F0C7;">{{item.time}}</pre>
+        <pre>{{item|json}}</pre>
+        <pre>{{item.$msg}}<pre>
+    </div>
+    <hr>
+</div>

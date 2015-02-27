@@ -1,0 +1,212 @@
+<div ng-controller="shopCtrl" class="container">
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-sm-8">
+      <table class="table table-bordered table-striped table-hover">
+        <tr>
+          <th>店铺名称</th>
+          <th>手机</th>
+          <!-- <th>QQ</th> -->
+          <th>状态</th>
+          <th>销量</th>
+          <th>消息</th>
+          <th>星级</th>
+          <th>优先级</th>
+          <th>启用</th>
+          <th>货物数量</th>
+          <th>商品管理</th>
+        </tr>
+        <tr style="cursor:pointer;" ng-repeat="shop in shops" ng-click="choose(shop)">
+          <td>{{shop.info.name}}</td>
+          <td>{{shop.info.tel}}</td>
+          <!-- <td>{{shop.info.QQ}}</td> -->
+          <td>{{shop.info.state}}</td>
+          <td>{{shop.data.salesVolume}}</td>
+          <td>{{shop.info.msg}}</td>
+          <td>{{shop.data.star}}</td>
+          <td>{{shop.data.proority}}</td>
+          <td>{{shop.data.show?"YES":"NO"}}</td>
+          <td>{{shop.goods.length}}</td>
+          <th><a ng-href="/admin/editshop/{{shop.id}}">商品管理</a>
+          </th>
+        </tr>
+      </table>
+      <button class="btn btn-primary btn-lg" ng-click="add()">新增店铺</button>
+    </div>
+    <div class="col-sm-4">
+      <div class="">
+        <!-- 	<form action="/api/admin/upload" method="POST" name="form" enctype="multipart/form-data">
+				<div class="form-group">
+				    <label for="inputEmail3" class="col-sm-2 control-label">店铺图标</label>
+				    <div class="col-sm-10">
+				       <img src="/static/images/type1.png" alt="ico">
+				       <span class="alert alert-info">上传 .png | .jpg 正方型100*100 - 120*120</span>
+				       <input name="file" type="file" id="exampleInputFile">
+				       <button name="submit" type="submit" class="btn btn-primary">上传</button>
+				    </div>
+				  </div>
+			</form> -->
+        <!-- 
+			<form role="form2" name="uploadform">
+				<div class="form-group">
+				    <label for="inputEmail3" class="col-sm-2 control-label">店铺图标</label>
+				    <div class="col-sm-10">
+				       <img src="/static/images/type1.png" alt="ico">
+				       <span class="alert alert-info">上传 .png | .jpg 正方型100*100 - 120*120</span>
+				       <input type="file" file-model="myFile"/>
+				       <button name="submit" type="submit" ng-click="upload()" class="btn btn-primary">上传</button>
+				    </div>
+				  </div>
+			</form> -->
+
+        <form class="form-horizontal" role="form" name="shopform">
+
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">店铺名称</label>
+            <div class="col-sm-10">
+              <input ng-model="shopnow.info.name" type="text" class="form-control" placeholder="店铺名称" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">店铺缩写</label>
+            <div class="col-sm-10">
+              <input ng-model="shopnow.info.shortName" type="text" class="form-control" placeholder="用于快速查找,请填写店铺首字母缩写" required ng-pattern="/^[a-z]{0,20}$/">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">城市</label>
+            <div class="col-sm-10">
+              <input ng-model="shopnow.info.city" type="text" class="form-control" placeholder="用|分割,现阶段请填写 湘潭市|雨湖区 之类" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">QQ</label>
+            <div class="col-sm-10">
+              <input ng-model="shopnow.info.QQ" type="number" class="form-control" placeholder="QQ" ng-pattern="/^\d{5,13}$/">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">微信</label>
+            <div class="col-sm-10">
+              <input ng-model="shopnow.info.weixin" type="text" class="form-control" placeholder="微信对公众号回复id获取一段代码填写在这里" ng-pattern="/^[0-9A-Za-z\-]{0,28}$/" ng-change="completionWeixin()">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">手机号</label>
+            <div class="col-sm-10">
+              <input ng-model="shopnow.info.tel" type="tel" class="form-control" placeholder="手机号" required ng-pattern="/^1[0-9]{10}$/">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">起送价格</label>
+            <div class="col-sm-10">
+              <input ng-model="shopnow.info.startPrice" class="form-control" placeholder="起送价格" required ng-pattern="/^[0-9]{1,3}$/">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">配送费</label>
+            <div class="col-sm-10">
+              <input ng-model="shopnow.info.addPrice" class="form-control" placeholder="配送费" required ng-pattern="/^[0-9]{1,3}$/">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">免配送费价格</label>
+            <div class="col-sm-10">
+              <input ng-model="shopnow.info.freePrice" class="form-control" placeholder="达到此价格之 后免配送费,如果不需要请设为999"  ng-pattern="/^[0-9]{0,5}$/">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">配送时间</label>
+            <div class="col-sm-10">
+              <input ng-model="shopnow.info.deliveryTime" class="form-control" placeholder="多少分钟" required ng-pattern="/^[0-9]{0,3}$/">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">店铺描述</label>
+            <div class="col-sm-10">
+              <input ng-model="shopnow.info.desc" class="form-control" placeholder="店铺描述" >
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">送货区域</label>
+            <div class="col-sm-10">
+              <input ng-model="shopnow.info.area" class="form-control" placeholder="送货区域" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">店铺地址</label>
+            <div class="col-sm-10">
+              <input ng-model="shopnow.info.addr" class="form-control" placeholder="店铺地址" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">店铺公告</label>
+            <div class="col-sm-10">
+              <input ng-model="shopnow.info.msg" class="form-control" placeholder="店铺提示">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">状态</label>
+            <div class="col-sm-10">
+              <input ng-model="shopnow.info.state" class="form-control" placeholder="如休息 营业 特价" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">管理员</label>
+            <div class="col-sm-10">
+              <input ng-model="shopnow.data.admin" class="form-control" placeholder="如 admin|wang">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">星级</label>
+            <div class="col-sm-10">
+              <input ng-model="shopnow.data.star" class="form-control" placeholder="填写1-5" required ng-pattern="/^[1-5]{1}$/">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">优先级</label>
+            <div class="col-sm-10">
+              <input ng-model="shopnow.data.proority" class="form-control" placeholder=" 默认为0,范围0-99,数字越大越在前面" required ng-pattern="/^[0-9]{0,2}$/">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">图片地址</label>
+            <div class="col-sm-10">
+              <input ng-model="shopnow.info.shopImg" class="form-control" placeholder="" required>
+              <img ng-src="{{shopnow.info.shopImg|qiniuimg}}" ng-if="shopnow.info.shopImg"></img>
+              <input type="file" file-model="myFile" />
+              <button name="submit" type="submit" ng-click="upload()" class="btn btn-primary">上传</button>
+
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">显示</label>
+            <div class="col-sm-10">
+              <input type="radio" checked ng-model="shopnow.data.show" ng-value="true">前台显示
+              <br/>
+              <input type="radio" ng-model="shopnow.data.show" ng-value="false">前台不显示
+              <br/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button ng-click="update()" type="submit" ng-disabled="shopform.$invalid" class="btn btn-success">更新</button>
+              <button ng-click="add()" ng-disabled="" class="btn btn-primary">新增</button>
+              <button ng-click="del()" ng-disabled="" class="btn btn-primary">删除</button>
+            </div>
+          </div>
+          <p ng-show="msg" class="alert alert-danger">{{msg}}</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

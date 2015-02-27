@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-cn" ng-app='index'>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>湖南爱上天使街</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="http://anglestreet.qiniudn.com/static/css/bootstrap.min.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="/static/css/mycss.css?__inline=true" type="text/css" charset="utf-8" />
+
+  <script src="http://anglestreet.qiniudn.com/static/js/lib/underscore.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://anglestreet.qiniudn.com/static/js/lib/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://anglestreet.qiniudn.com/static/js/lib/angular.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://anglestreet.qiniudn.com/static/js/lib/iScroll.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://anglestreet.qiniudn.com/static/js/lib/angular-route.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://anglestreet.qiniudn.com/static/js/lib/angular-cookies.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://anglestreet.qiniudn.com/static/js/lib/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+  <!-- // <script src="http://anglestreet.qiniudn.com/static/js/lib20140821.js" type="text/javascript" charset="utf-8"></script> -->
+  <script src="/static/js/main.js?__inline=true" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+  <div ng-view class=""></div>
+</body>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?d3f70299c4ed70f7f890c222c852004a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+//微信分享代码
+  $(function(){
+    var imgUrl = 'http://anglestreet.duapp.com/static/images/main-shot.jpg';  // 分享后展示的一张图片
+    var lineLink = window.location.href; // 点击分享后跳转的页面地址
+    var shareTitle = "爱上天使街外卖平台";  // 分享后的标题
+    var descContent = "爱上天使街外卖平台\n给你极致的吃货体验";  // 分享后的描述信息
+    var appid = '';  // 应用id,如果有可以填，没有就留空
+    
+    function shareFriend() {
+      WeixinJSBridge.invoke('sendAppMessage',{
+        "appid": appid,
+        "img_url": imgUrl,
+        "img_width": "200",
+        "img_height": "200",
+        "link": lineLink,
+        "desc": descContent,
+        "title": shareTitle
+      }, function(res) {
+        //_report('send_msg', res.err_msg);  // 这是回调函数，必须注释掉
+      })
+    }
+    function shareTimeline() {
+      WeixinJSBridge.invoke('shareTimeline',{
+        "img_url": imgUrl,
+        "img_width": "200",
+        "img_height": "200",
+        "link": lineLink,
+        "desc": descContent,
+        "title": shareTitle
+      }, function(res) {
+           //_report('timeline', res.err_msg); // 这是回调函数，必须注释掉
+      });
+    }
+    function shareWeibo() {
+      WeixinJSBridge.invoke('shareWeibo',{
+        "content": descContent,
+        "url": lineLink,
+      }, function(res) {
+        //_report('weibo', res.err_msg);
+      });
+    }
+    // 当微信内置浏览器完成内部初始化后会触发WeixinJSBridgeReady事件。
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+      // 发送给好友
+      WeixinJSBridge.on('menu:share:appmessage', function(argv){
+        lineLink = window.location.href;
+        shareFriend();
+      });
+      // 分享到朋友圈
+      WeixinJSBridge.on('menu:share:timeline', function(argv){
+        lineLink = window.location.href;
+        shareTimeline();
+      });
+      // 分享到微博
+      WeixinJSBridge.on('menu:share:weibo', function(argv){
+        lineLink = window.location.href;
+        shareWeibo();
+      });
+    }, false);  
+  });
+</script>
+
+</html>
+
+
+
+

@@ -1,0 +1,128 @@
+<div ng-controller="shopCtrl">
+  <div class="head orange">
+    <div class="backarr">
+      <a href="/#/shop">
+        <img class="back-arrow" src="/static/images/arrow.png">
+      </a>
+    </div>
+    <h3 class="shoptitle">
+      {{shopData.info.name}}
+    </h3>
+
+  </div>
+  <div class="shop-detail-ct">
+    <div class="shop-detail">
+      <p>总销量</p>
+      <p class="price">{{shopData.data.salesVolume}}</p>
+      <p>起送价格</p>
+      <p class="price">{{shopData.info.startPrice}}</p>
+      <p>赞</p>
+      <p class="price">0</p>
+    </div>
+    <div class="discuss">
+          <h4>店铺公告</h4>
+          <p>{{shopData.info.msg}}</p>
+    </div>
+  </div>
+    
+
+  <div class="order container">
+    <div class="row">
+      <div id="typeList" class="left-bar col-xs-3">
+        <div id="typeList_scroller">
+          <p class="order-type" ng-click="changeCategory('热卖')" ng-class="{'active': '热卖' == categoryNow}"><a>热卖</a>
+          </p>
+          <p class="order-type" ng-repeat="c in category" ng-click="changeCategory(c.name)" ng-class="{'active': c.name == categoryNow}">
+            <a>{{c.name}}<span class="b-all badge">{{c.count}}</span></a>
+          </p>
+          <p style="margin-bottom:180px" class="order-type" ng-click="changeCategory('我的订单')" ng-class="{'active': '我的订单' == categoryNow}">
+            <a>我的订单</a>
+          </p>
+        </div>
+      </div>
+      <script>
+        var typeList
+        setTimeout(function(){
+         typeList=new iScroll("typeList", {"vScrollbar":false});
+       }, 1000);
+      </script>
+      <div id="right-bar">
+        <div class="right-bar col-xs-9">
+     
+          <div class="order-detail" ng-repeat="item in goods">
+            <div  ng-click="showModal(item.img,item.name,item.price,item.salesVolume)" class="imgClickArea">
+            </div>
+
+            <img class="goods-pic" ng-src="{{item.img|qiniuimg}}">
+            <div class="order-detail-left">
+              <p>
+                <!--<span class='hasPic glyphicon glyphicon-picture' ng-show="item.img"></span>-->{{item.name}}
+              </p>
+                <span class="price">￥{{item.price}}</span>/份 售出{{item.salesVolume}}份
+            </div>
+
+            <div class="glyphicon glyphicon-minus-sign sp-btn sp-2" ng-click="clickAdd(item.id,-1)" ng-show="order.goods[item.id]>0"></div>
+            <div class="glyphicon glyphicon-plus-sign sp-btn sp-1" ng-click="clickAdd(item.id,1)"></div>
+            <div class="o-cnt o-1" ng-show="order.goods[item.id]">{{order.goods[item.id]}}</div>
+            <img ng-if="item.img" ng-src="{{item.img|qiniuimg}}" ng-show="show" style="display: block">
+          </div>
+          <div style="height:100px;width:100px"></div>
+        </div>
+      </div>
+      <script>
+        var rightbar
+        setTimeout(function(){
+         rightbar = new iScroll("right-bar", {"vScrollbar":false});
+       }, 1000);
+        $('#typeList').click(function(){ rightbar.refresh()});
+      </script>
+    </div>
+  </div>
+  <div class="foot-bar">
+    <p class="pull-left">
+      {{order.allcount}}份 <span class="price">￥{{order.allprice}}</span>
+    </p>
+    <p>
+      <button ng-if="order.allprice<shopData.info.startPrice" class="pull-right btn btn-danger btn-xs">
+        差{{shopData.info.startPrice-order.allprice}}元起送
+      </button>
+      <button ng-if="order.allprice>=shopData.info.startPrice" ng-click="clickOrder()" class="pull-right btn btn-danger btn-xs">
+        <span id="need-price">{{categoryNow=="我的订单"?"提交订单":"点好了"}}</span>
+      </button>
+    </p>
+  </div>
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="item_pic_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">{{itemModal.name}}</h4>
+        </div>
+        <div class="modal-body">
+          <div id="item_pic" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+              <div class="item active">
+                <img style="margin:auto"ng-src="{{itemModal.img|qiniuimg:310}}" alt="food-pic">
+                
+              </div>
+            </div>
+
+            <!-- Controls -->
+          </div>
+        </div>
+        <div class="container">
+          <p class="price">￥{{itemModal.price}}元/份 已售{{itemModal.salesVolume}}份</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" data-dismiss="modal" class="go_confirm btn btn-danger">确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

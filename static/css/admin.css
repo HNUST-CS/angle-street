@@ -1,0 +1,11 @@
+input.ng-invalid {
+	border: 1px solid red;
+}
+body{
+	/*background:url(/static/images/admin_background.jpg);*/
+
+	background-attachment:fixed; 
+}
+.container{
+	width: 95%;
+}

@@ -1,0 +1,39 @@
+<div ng-controller="orderCtrl">
+  <div class="head text-center" ng-click="clickReturn()">
+      <span class="glyphicon glyphicon-circle-arrow-left back-btn"></span>
+      <h3 class="inline title">确认订单</h3>
+  </div>
+  <div style="margin-top: 80px;" class="container" ng-click="saveContent()">
+    <div class="item-msg-ct">
+      <div class="item-msg">
+        <div class="inline">
+          <h5>合计</h5>
+        </div>
+        <span class="price pull-right">{{order.allcount}}件/￥{{order.allprice}}</span>
+      </div>
+    </div>
+    <form role="form" name="orderform">
+      <div class="item-msg-ct">
+        <div class="item-msg">
+          <input type="text" class="form-control" placeholder="姓名：" ng-model="order.name" required ng-maxlength=20>
+        </div>
+        <div class="item-msg">
+          <input type="tel" class="form-control" placeholder="手机号：" ng-model="order.tel" required ng-pattern="/1[0-9]{10}/">
+        </div>
+        <div class="item-msg">
+          <input type="text" class="form-control" placeholder="收货地址：" ng-model="order.addr" required>
+        </div>
+      </div>
+      <div style="margin-bottom: 30px;" class="item-msg-ct">
+        <div class="item-msg">
+          <input type="text" class="form-control" placeholder="给餐厅留言：(比如送货时间,少点辣，少放盐等)" ng-model="order.msg">
+        </div>
+      </div>
+      <!-- <div>你的订单已经提交,如果你没有收到微信消息,请联系客 服</div> -->
+      <h5 stclass="bg-danger">{{msg}}</h5>
+      <button type="button" class="go_confirm btn btn-danger" ng-disabled="orderform.$invalid||disable" ng-click="clickOrderSubmit()">去下单</button>
+
+    </form>
+  </div>
+  <!-- {{order|json}} -->
+</div>
