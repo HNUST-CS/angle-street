@@ -1,5 +1,7 @@
 爱上天使街外卖平台
 =======
+#####目前我正在寻找暑假实习，欢迎访问 [r.hi-hi.cn](http://r.hi-hi.cn) 查看我的简历
+
 这是模仿[美团外卖](http://i.waimai.meituan.com/home/wx4g0f69nfe7)的一个微信外卖平台。
 开发者 [wangkechun](https://github.com/wangkechun)(除前端之外的工作) [JailBreakC](https://github.com/JailBreakC)（前端）
 
